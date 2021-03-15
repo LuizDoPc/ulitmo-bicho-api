@@ -7,4 +7,4 @@ app.use(express.json())
 
 app.get('/getResultado', resultadosController.getResultado)
 
-app.listen(3333)
+app.listen(process.env.PORT || 3333)
