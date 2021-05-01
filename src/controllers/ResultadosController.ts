@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import got from 'got'
 import cheerio from 'cheerio'
 import { OldResult, FullResult } from '@models/ResultadoType'
@@ -10,15 +11,16 @@ class ResultadosController {
 
       const tables = $('table tbody tr')
 
-      const data = tables.text().split('\n')
+      const data = tables.text().split('\n').map(i => i.replace(/ /g, ''))
+      console.log('🚀 ~ file: ResultadosController.ts ~ line 15 ~ ResultadosController ~ returngot ~ data', JSON.stringify(data))
 
       const resultadoAtual = []
-      for (let i = 2; i < 23; i += 5) {
+      for (let i = 2; i < 31; i += 7) {
         resultadoAtual.push(data[i].split('-')[0].replace(/ /g, ''))
       }
 
       const resultadosAntigos : OldResult[] = []
-      for (let i = 36; i < 77; i += 40) {
+      for (let i = 50; i < 91; i += 40) {
         const result : OldResult = {
           date: data[i].replace(/ /g, ''),
           d1: data[i + 2].replace(/ /g, ''),
